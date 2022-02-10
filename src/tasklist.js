@@ -11,7 +11,7 @@ import yargs from "yargs";
 
 const default_data = { list: [] };
 
-const STORAGE_PATH = homedir() + "/todo-cli.json";
+const STORAGE_PATH = homedir() + "/tasklist-cli.json";
 
 if (!fs.existsSync(STORAGE_PATH)) {
   fs.writeFileSync(STORAGE_PATH, JSON.stringify(default_data));
