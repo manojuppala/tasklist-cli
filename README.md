@@ -1,10 +1,8 @@
 # Tasklist-cli
 
-![CI](https://github.com/todotxt/todo.txt-cli/workflows/CI/badge.svg)
-[![GitHub issues](https://img.shields.io/github/issues/todotxt/todo.txt-cli.svg)](https://github.com/todotxt/todo.txt-cli/issues)
-[![GitHub forks](https://img.shields.io/github/forks/todotxt/todo.txt-cli.svg)](https://github.com/todotxt/todo.txt-cli/network)
-[![GitHub stars](https://img.shields.io/github/stars/todotxt/todo.txt-cli.svg)](https://github.com/todotxt/todo.txt-cli/stargazers)
-[![GitHub license](https://img.shields.io/github/license/todotxt/todo.txt-cli.svg)](https://raw.githubusercontent.com/todotxt/todo.txt-cli/master/LICENSE)
+![npm (custom registry)](https://img.shields.io/npm/v/tasklist-cli/latest?logo=npm&logoColor=%23ffffff&registry_uri=https%3A%2F%2Fregistry.npmjs.com)
+![GitHub issues](https://img.shields.io/github/issues-raw/manojuppala/tasklist-cli?logo=GITHUB)
+![NPM](https://img.shields.io/npm/l/tasklist-cli?color=%239e1818&label=License&registry_uri=https%3A%2F%2Fregistry.npmjs.com)
 
 <p>
   <img src="assets/tasklist-cli.png" alt="camKapture" width="150"/>
@@ -88,7 +86,11 @@ Read about all the possible commands in [USAGE](https://github.com/manojuppala/t
 ## License
 
 ```
-The files and scripts in this repository are licensed under the MIT License, which is a very permissive license allowing you to use, modify, copy, distribute, sell, give away, etc. the software. In other words, do what you want with it. The only requirement with the MIT License is that the license and copyright notice must be provided with the software.
+The files and scripts in this repository are licensed under the MIT License,
+which is a very permissive license allowing you to use, modify, copy,
+distribute, sell, give away, etc. the software. In other words,
+do what you want with it. The only requirement with the MIT License is
+that the license and copyright notice must be provided with the software.
 ```
 
 <a href='https://github.com/manojuppala/todo-list-cli/blob/main/LICENSE'>
