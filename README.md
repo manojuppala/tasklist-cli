@@ -1,9 +1,9 @@
-# todo-list-cli
+# tasklist-cli
 
 todo-list-cli is a simple and elegant command line application to manage tasks and todolists.
 
 <p>
-  <img src="assets/todo-list-cli.png" alt="camKapture" width="180"/>
+  <img src="assets/tasklist-cli.png" alt="camKapture" width="150"/>
 </p>
 
 ## License

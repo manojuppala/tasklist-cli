@@ -1,9 +1,13 @@
 {
-  "name": "todo-list-cli",
+  "name": "tasklist-cli",
   "version": "1.0.0",
   "description": "A simple and elegant todo-list command line application.",
-  "main": "src/todo.js",
+  "main": "src/tasklist.js",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/manojuppala/tasklist-cli"
+  },
   "scripts": {
     "start": "node ."
   },
@@ -11,7 +15,7 @@
     "todo",
     "cli",
     "todo-list",
-    "todo-list-cli"
+    "tasklist-cli"
   ],
   "author": "manoj uppala <uppala0863@gmail.com>",
   "license": "MIT",
@@ -24,6 +28,6 @@
     "nanospinner": "^1.0.0"
   },
   "bin": {
-    "todo": "./src/todo.js"
+    "task": "./src/tasklist.js"
   }
 }
