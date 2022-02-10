@@ -150,9 +150,9 @@ async function addTask() {
   console.log(`new task ${chalk.yellow(newTask.newTask)} created.`);
 }
 
-async function todoCli() {
+async function taskList() {
   if (!yargs.argv._[0]) {
-    figlet("todo - cli", "Slant", (err, data) => {
+    figlet("tasklist", "Bloody", (err, data) => {
       console.log(gradient.pastel.multiline(data));
     });
 
@@ -194,4 +194,4 @@ async function todoCli() {
 }
 
 console.clear();
-await todoCli();
+await taskList();
