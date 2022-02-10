@@ -1,0 +1,29 @@
+{
+  "name": "todo-list-cli",
+  "version": "1.0.0",
+  "description": "A simple and elegant todo-list command line application.",
+  "main": "src/todo.js",
+  "type": "module",
+  "scripts": {
+    "start": "node ."
+  },
+  "keywords": [
+    "todo",
+    "cli",
+    "todo-list",
+    "todo-list-cli"
+  ],
+  "author": "manoj uppala <uppala0863@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "figlet": "^1.5.2",
+    "gradient-string": "^2.0.0",
+    "inquirer": "^8.2.0",
+    "yargs": "^13.2.1",
+    "chalk": "^4.1.2",
+    "nanospinner": "^1.0.0"
+  },
+  "bin": {
+    "todo": "./src/todo.js"
+  }
+}
