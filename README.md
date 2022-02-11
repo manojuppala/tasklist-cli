@@ -1,8 +1,8 @@
 # Tasklist-cli
 
-![npm (custom registry)](https://img.shields.io/npm/v/tasklist-cli/latest?logo=npm&logoColor=%23ffffff&registry_uri=https%3A%2F%2Fregistry.npmjs.com)
-![GitHub issues](https://img.shields.io/github/issues-raw/manojuppala/tasklist-cli?logo=GITHUB)
-![NPM](https://img.shields.io/npm/l/tasklist-cli?color=%239e1818&label=License&registry_uri=https%3A%2F%2Fregistry.npmjs.com)
+[![npm (custom registry)](https://img.shields.io/npm/v/tasklist-cli/latest?logo=npm&logoColor=%23ffffff&registry_uri=https%3A%2F%2Fregistry.npmjs.com)](https://www.npmjs.com/package/tasklist-cli)
+[![GitHub issues](https://img.shields.io/github/issues-raw/manojuppala/tasklist-cli?logo=GITHUB)](https://github.com/manojuppala/tasklist-cli/issues)
+[![NPM](https://img.shields.io/npm/l/tasklist-cli?color=%239e1818&label=License&registry_uri=https%3A%2F%2Fregistry.npmjs.com)](https://github.com/manojuppala/tasklist-cli/blob/main/LICENSE)
 
 <p>
   <img src="assets/tasklist-cli.png" alt="camKapture" width="150"/>
