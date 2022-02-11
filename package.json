@@ -1,6 +1,6 @@
 {
   "name": "tasklist-cli",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Tasklist-cli is a simple and elegant command line application to manage tasks and todo lists",
   "main": "src/tasklist.js",
   "type": "module",
