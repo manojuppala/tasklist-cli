@@ -24,6 +24,14 @@ export default async function addTask() {
       return "new task";
     },
   });
+  const confirmDate = await inquirer.prompt({
+    name: "dueDate",
+    type: "confirm",
+    message: "Add due date",
+    default() {
+      return false;
+    },
+  });
   const taskDate = await inquirer.prompt({
     name: "dueDate",
     type: "date",
@@ -51,9 +59,7 @@ export default async function addTask() {
   fs.writeFileSync(STORAGE_PATH, JSON.stringify(tasks));
   console.clear();
   console.log(
-    `New task ${chalk.yellow(
-      newTask.newTask
-    )} created. Due date : ${chalk.green(
+    `New task ${chalk.yellow(newTask.newTask)} created. Due date: ${chalk.green(
       taskDate.dueDate.toLocaleTimeString([], {
         year: "numeric",
         month: "numeric",

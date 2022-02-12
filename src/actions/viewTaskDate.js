@@ -7,7 +7,7 @@ import { default as removeTask } from "./removeTask.js";
 const STORAGE_PATH = homedir() + "/tasklist.json";
 let tasks = JSON.parse(fs.readFileSync(STORAGE_PATH));
 
-export default async function viewTask() {
+export default async function viewTaskDate() {
   let taskList = [];
 
   tasks.default.forEach((element) => {
@@ -16,7 +16,28 @@ export default async function viewTask() {
       let today = new Date();
       taskList.push({
         value: element.id,
-        name: element.name,
+        name:
+          element.name +
+          " " +
+          (today <= dueDate
+            ? chalk.green(
+                dueDate.toLocaleTimeString([], {
+                  year: "numeric",
+                  month: "numeric",
+                  day: "numeric",
+                  hour: "2-digit",
+                  minute: "2-digit",
+                })
+              )
+            : chalk.red(
+                dueDate.toLocaleTimeString([], {
+                  year: "numeric",
+                  month: "numeric",
+                  day: "numeric",
+                  hour: "2-digit",
+                  minute: "2-digit",
+                })
+              )),
       });
     }
   });

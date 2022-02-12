@@ -3,12 +3,15 @@
 import chalk from "chalk";
 import inquirer from "inquirer";
 import yargs from "yargs";
-import { addTask, viewTask, doneTask } from "./actions/index.js";
+import { addTask, viewTask, viewTaskDate, doneTask } from "./actions/index.js";
 
 async function taskList() {
   if (yargs.argv._[0] === "list" || yargs.argv._[0] === "ls") {
     console.clear();
     viewTask();
+  } else if (yargs.argv._[0] === "listdate" || yargs.argv._[0] === "ld") {
+    console.clear();
+    viewTaskDate();
   } else if (yargs.argv._[0] === "add" || yargs.argv._[0] === "a") {
     console.clear();
     addTask();
