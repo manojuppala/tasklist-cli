@@ -20,12 +20,13 @@
   "author": "manoj uppala <uppala0863@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "chalk": "^4.1.2",
     "figlet": "^1.5.2",
     "gradient-string": "^2.0.0",
     "inquirer": "^8.2.0",
-    "yargs": "^13.2.1",
-    "chalk": "^4.1.2",
-    "nanospinner": "^1.0.0"
+    "inquirer-date-prompt": "^2.0.1",
+    "nanospinner": "^1.0.0",
+    "yargs": "^13.2.1"
   },
   "bin": {
     "task": "./src/tasklist.js"

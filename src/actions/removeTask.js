@@ -3,10 +3,11 @@ import fs from "fs";
 import { homedir } from "os";
 
 const STORAGE_PATH = homedir() + "/tasklist.json";
-let data = JSON.parse(fs.readFileSync(STORAGE_PATH));
+let tasks = JSON.parse(fs.readFileSync(STORAGE_PATH));
 
+// function to revoke or mark done a task.
 export default async function removeTask(removedTaskId) {
-  data.list.forEach((element) => {
+  tasks.default.forEach((element) => {
     if (element.id === removedTaskId) {
       if (element.status) {
         console.clear();
@@ -18,5 +19,5 @@ export default async function removeTask(removedTaskId) {
       element.status = !element.status;
     }
   });
-  fs.writeFileSync(STORAGE_PATH, JSON.stringify(data));
+  fs.writeFileSync(STORAGE_PATH, JSON.stringify(tasks));
 }
