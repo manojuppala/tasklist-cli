@@ -23,7 +23,7 @@ Tasklist-cli is a simple and elegant command line application to manage tasks an
 using Node package manager
 
 ```shell
-npm i tasklist-cli
+npm i tasklist-cli -g
 ```
 
 you should now be able to use the command `task`
@@ -58,7 +58,7 @@ task a
 
 ```shell
 task list
-task l
+task ls
 ```
 
 ### `done`

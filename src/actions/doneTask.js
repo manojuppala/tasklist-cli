@@ -5,16 +5,18 @@ import { createSpinner } from "nanospinner";
 import { homedir } from "os";
 import { default as removeTask } from "./removeTask.js";
 
-const STORAGE_PATH = homedir() + "/tasklist.json";
+const STORAGE_PATH = homedir() + "/.tasklist/tasklist.json";
+
 let tasks = JSON.parse(fs.readFileSync(STORAGE_PATH));
 
 const sleep = (ms = 100) => new Promise((r) => setTimeout(r, ms));
 
+// function to add tasks to donetask list.
 export default async function doneTask() {
   let taskList = [];
-  tasks.default.forEach((element) => {
-    if (element.status) {
-      taskList.push({ value: element.id, name: element.name });
+  tasks.default.forEach((task) => {
+    if (task.status) {
+      taskList.push({ value: task.id, name: task.name });
     }
   });
   if (taskList.length) {
@@ -44,7 +46,7 @@ export default async function doneTask() {
       spinner.success({ text: `All tasks have been cleared` });
     } else if (doneTasks.selectTask === `${chalk.red("❌ cancel")}`) {
       console.clear();
-      console.log(`No option Selected.`);
+      console.log(`No task Selected.`);
     } else {
       await removeTask(doneTasks.selectTask);
     }

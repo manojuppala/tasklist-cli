@@ -5,6 +5,7 @@ import inquirer from "inquirer";
 import yargs from "yargs";
 import { addTask, viewTask, viewTaskDate, doneTask } from "./actions/index.js";
 
+// function to initialize tasklist-cli
 async function taskList() {
   if (yargs.argv._[0] === "list" || yargs.argv._[0] === "ls") {
     console.clear();
@@ -30,14 +31,12 @@ async function taskList() {
       choices: chooseTaskList,
       pageSize: chooseTaskList.length,
     });
+    console.clear();
     if (Responses.Response === "📑 View tasks") {
-      console.clear();
       viewTask();
     } else if (Responses.Response === "📝 Add new task") {
-      console.clear();
       addTask();
     } else if (Responses.Response === "✅ Done tasks") {
-      console.clear();
       doneTask();
     } else {
       console.clear();
