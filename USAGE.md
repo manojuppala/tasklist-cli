@@ -31,6 +31,16 @@ task list
 task l
 ```
 
+### `listdate`
+
+- returns the list of all tasks that are incomplete along with their due dates.
+- you can either select a task to mark as done or cancel.
+
+```shell
+task list
+task ld
+```
+
 ### `done`
 
 - returns the list of all tasks that are marked done.
@@ -41,4 +51,13 @@ task l
 ```shell
 task done
 task d
+```
+
+### `help`
+
+- usage and description of tasklist-cli commands.
+
+```shell
+task help
+task -h
 ```

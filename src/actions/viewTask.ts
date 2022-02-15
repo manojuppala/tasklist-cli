@@ -1,22 +1,29 @@
-import chalk from "chalk";
-import inquirer from "inquirer";
-import fs from "fs";
+import * as chalk from "chalk";
+import * as inquirer from "inquirer";
+import * as fs from "fs";
 import { homedir } from "os";
 import { default as removeTask } from "./removeTask.js";
 
-const STORAGE_PATH = homedir() + "/tasklist.json";
-let tasks = JSON.parse(fs.readFileSync(STORAGE_PATH));
+const STORAGE_PATH = homedir() + "/.tasklist/tasklist.json";
 
+let tasks = JSON.parse(fs.readFileSync(STORAGE_PATH, "utf-8"));
+
+type taskType = {
+  id: number;
+  name: string;
+  status: boolean;
+  date: string;
+};
+
+// function to view pending task list.
 export default async function viewTask() {
   let taskList = [];
 
-  tasks.default.forEach((element) => {
-    if (!element.status) {
-      let dueDate = new Date(element.date);
-      let today = new Date();
+  tasks.default.forEach((task: taskType) => {
+    if (!task.status) {
       taskList.push({
-        value: element.id,
-        name: element.name,
+        value: task.id,
+        name: task.name,
       });
     }
   });
@@ -32,11 +39,11 @@ export default async function viewTask() {
       pageSize: taskList.length,
     });
 
-    if (viewTasks.selectTask !== `${chalk.red("❌ cancel")}`) {
-      await removeTask(viewTasks.selectTask);
-    } else if (viewTasks.selectTask === `${chalk.red("❌ cancel")}`) {
+    if (viewTasks.selectTask === `${chalk.red("❌ cancel")}`) {
       console.clear();
       console.log(`No task Choosen.`);
+    } else {
+      await removeTask(viewTasks.selectTask);
     }
   } else {
     console.clear();

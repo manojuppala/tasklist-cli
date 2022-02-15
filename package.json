@@ -2,14 +2,14 @@
   "name": "tasklist-cli",
   "version": "1.0.2",
   "description": "Tasklist-cli is a simple and elegant command line application to manage tasks and todo lists",
-  "main": "src/tasklist.js",
-  "type": "module",
+  "main": "lib/tasklist.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/manojuppala/tasklist-cli"
   },
   "scripts": {
-    "start": "node ."
+    "start": "node .",
+    "build": "tsc"
   },
   "keywords": [
     "todo",
@@ -21,14 +21,17 @@
   "license": "MIT",
   "dependencies": {
     "chalk": "^4.1.2",
-    "figlet": "^1.5.2",
-    "gradient-string": "^2.0.0",
     "inquirer": "^8.2.0",
     "inquirer-date-prompt": "^2.0.1",
     "nanospinner": "^1.0.0",
-    "yargs": "^13.2.1"
+    "yargs": "^17.3.1"
   },
   "bin": {
     "task": "./src/tasklist.js"
+  },
+  "devDependencies": {
+    "@types/inquirer": "^8.2.0",
+    "@types/yargs": "^17.0.8",
+    "typescript": "^4.5.5"
   }
 }
