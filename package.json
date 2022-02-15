@@ -27,7 +27,7 @@
     "yargs": "^17.3.1"
   },
   "bin": {
-    "task": "./src/tasklist.js"
+    "task": "./lib/tasklist.js"
   },
   "devDependencies": {
     "@types/inquirer": "^8.2.0",
