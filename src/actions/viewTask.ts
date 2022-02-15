@@ -1,18 +1,25 @@
-import chalk from "chalk";
-import inquirer from "inquirer";
-import fs from "fs";
+import * as chalk from "chalk";
+import * as inquirer from "inquirer";
+import * as fs from "fs";
 import { homedir } from "os";
 import { default as removeTask } from "./removeTask.js";
 
 const STORAGE_PATH = homedir() + "/.tasklist/tasklist.json";
 
-let tasks = JSON.parse(fs.readFileSync(STORAGE_PATH));
+let tasks = JSON.parse(fs.readFileSync(STORAGE_PATH, "utf-8"));
+
+type taskType = {
+  id: number;
+  name: string;
+  status: boolean;
+  date: string;
+};
 
 // function to view pending task list.
 export default async function viewTask() {
   let taskList = [];
 
-  tasks.default.forEach((task) => {
+  tasks.default.forEach((task: taskType) => {
     if (!task.status) {
       taskList.push({
         value: task.id,

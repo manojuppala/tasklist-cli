@@ -52,3 +52,12 @@ task ld
 task done
 task d
 ```
+
+### `help`
+
+- usage and description of tasklist-cli commands.
+
+```shell
+task help
+task -h
+```

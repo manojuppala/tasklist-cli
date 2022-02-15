@@ -1,18 +1,28 @@
-import chalk from "chalk";
-import inquirer from "inquirer";
-import fs from "fs";
+import * as chalk from "chalk";
+import * as inquirer from "inquirer";
+import * as fs from "fs";
 import { homedir } from "os";
 import { default as removeTask } from "./removeTask.js";
 
 const STORAGE_PATH = homedir() + "/.tasklist/tasklist.json";
 
-let tasks = JSON.parse(fs.readFileSync(STORAGE_PATH));
+let tasks = JSON.parse(fs.readFileSync(STORAGE_PATH, "utf-8"));
+
+type taskType = {
+  id: number;
+  name: string;
+  status: boolean;
+  date: string;
+};
 
 // function to view pending task list with date.
 export default async function viewTaskDate() {
   let taskList = [];
-
-  tasks.default.forEach((element) => {
+  let sortDateArray = tasks.default;
+  sortDateArray.sort(
+    (a: taskType, b: taskType) => +new Date(a.date) - +new Date(b.date)
+  );
+  sortDateArray.forEach((element: taskType) => {
     if (!element.status) {
       let dueDate = new Date(element.date);
       let today = new Date();

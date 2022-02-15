@@ -7,6 +7,8 @@
 
 <p>
   <img src="assets/tasklist-cli.png" alt="camKapture" width="150"/>
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  <img src="assets/typescript.png" alt="camKapture" width="150"/>
 </p>
 
 Tasklist-cli is a simple and elegant command line application to manage tasks and todos. Tasklist-cli exists to bring all the needed functionalities for simple project management to the terminal. No graphical interface is needed; this tool is easy enough to use to improve your workflow.
@@ -15,6 +17,7 @@ Tasklist-cli is a simple and elegant command line application to manage tasks an
 
 - add todo tasks.
 - mark tasks as done.
+- add due date to a task.
 - revoke done tasks.
 - delete all done tasks.
 
@@ -78,8 +81,6 @@ Read about all the possible commands in [USAGE](https://github.com/manojuppala/t
 ## Dependencies
 
 - [chalk](https://www.npmjs.com/package/chalk)
-- [figlet](https://www.npmjs.com/package/figlet)
-- [gradient-string](https://www.npmjs.com/package/gradient-string)
 - [inquirer](https://www.npmjs.com/package/inquirer)
 - [nanospinner](https://www.npmjs.com/package/nanospinner)
 - [yargs](https://www.npmjs.com/package/yargs)

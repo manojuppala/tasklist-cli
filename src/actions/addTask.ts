@@ -1,7 +1,7 @@
-import chalk from "chalk";
-import inquirer from "inquirer";
-import inquirerDate from "inquirer-date-prompt";
-import fs from "fs";
+import * as chalk from "chalk";
+import * as inquirer from "inquirer";
+import * as inquirerDate from "inquirer-date-prompt";
+import * as fs from "fs";
 import { homedir } from "os";
 
 const STORAGE_PATH = homedir() + "/.tasklist/tasklist.json";
@@ -13,9 +13,9 @@ if (!fs.existsSync(STORAGE_PATH)) {
   fs.writeFileSync(STORAGE_PATH, JSON.stringify(default_data));
 }
 
-let tasks = JSON.parse(fs.readFileSync(STORAGE_PATH));
+let tasks = JSON.parse(fs.readFileSync(STORAGE_PATH, "utf-8"));
 
-inquirer.registerPrompt("date", inquirerDate);
+inquirer.registerPrompt("date", inquirerDate as any);
 
 // function to add new tasks to list.
 export default async function addTask() {
@@ -50,7 +50,7 @@ export default async function addTask() {
     id: tasks.default.length === 0 ? 0 : tasks.default.slice(-1)[0].id + 1,
     name: newTask.taskName,
     status: false,
-    date: confirmDueDate.dueDate ? taskDueDate.dueDate : "no due date",
+    date: confirmDueDate.dueDate ? (taskDueDate as any).dueDate : "no due date",
   });
 
   fs.writeFileSync(STORAGE_PATH, JSON.stringify(tasks));
@@ -59,7 +59,7 @@ export default async function addTask() {
     `New task ${chalk.yellow(newTask.taskName)} created.` +
       (confirmDueDate.dueDate
         ? ` Due date: ${chalk.green(
-            taskDueDate.dueDate.toLocaleTimeString([], {
+            (taskDueDate as any).dueDate.toLocaleTimeString([], {
               year: "numeric",
               month: "numeric",
               day: "numeric",
