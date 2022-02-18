@@ -1,8 +1,9 @@
-# Tasklist-cli
-
 <p align="center">
   <img src="assets/tasklist-cli.png" alt="tasklist-cli" width="200"/>
 </p>
+
+# Tasklist-cli
+
 [![npm (custom registry)](https://img.shields.io/npm/v/tasklist-cli/latest?logo=npm&logoColor=%23ffffff&registry_uri=https%3A%2F%2Fregistry.npmjs.com)](https://www.npmjs.com/package/tasklist-cli)
 [![GitHub issues](https://img.shields.io/github/issues-raw/manojuppala/tasklist-cli?logo=GITHUB)](https://github.com/manojuppala/tasklist-cli/issues)
 [![npm](https://img.shields.io/npm/dw/tasklist-cli?color=yellow&logo=npm)](https://www.npmjs.com/package/tasklist-cli)
