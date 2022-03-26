@@ -19,6 +19,8 @@ Tasklist-cli is a simple and elegant command line application to manage tasks an
 - revoke done tasks.
 - delete all done tasks.
 
+## Preview
+
 <p>
   <img src="assets/tasklist.gif"/>
 </p>

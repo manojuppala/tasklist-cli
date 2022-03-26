@@ -37,7 +37,7 @@ task l
 - you can either select a task to mark as done or cancel.
 
 ```shell
-task list
+task listdate
 task ld
 ```
 

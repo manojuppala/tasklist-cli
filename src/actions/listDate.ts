@@ -2,7 +2,7 @@ import * as chalk from "chalk";
 import * as inquirer from "inquirer";
 import * as fs from "fs";
 import { homedir } from "os";
-import { default as removeTask } from "./removeTask.js";
+import { default as remove } from "./remove.js";
 
 const STORAGE_PATH = homedir() + "/.tasklist/tasklist.json";
 
@@ -15,8 +15,8 @@ type taskType = {
   date: string;
 };
 
-// function to view pending task list with date.
-export default async function viewTaskDate() {
+// function to list pending tasks with date.
+export default async function listDate() {
   let taskList = [];
   let sortDateArray = tasks.default;
   sortDateArray.sort(
@@ -59,7 +59,7 @@ export default async function viewTaskDate() {
     taskList.push(new inquirer.Separator());
     taskList.push(`${chalk.red("❌ cancel")}`);
 
-    const viewTasks = await inquirer.prompt({
+    const listTasks = await inquirer.prompt({
       name: "selectTask",
       type: "list",
       message: "📝 Choose a task to mark ✅ done",
@@ -67,11 +67,11 @@ export default async function viewTaskDate() {
       pageSize: taskList.length,
     });
 
-    if (viewTasks.selectTask === `${chalk.red("❌ cancel")}`) {
+    if (listTasks.selectTask === `${chalk.red("❌ cancel")}`) {
       console.clear();
       console.log(`No task Choosen.`);
     } else {
-      await removeTask(viewTasks.selectTask);
+      await remove(listTasks.selectTask);
     }
   } else {
     console.clear();

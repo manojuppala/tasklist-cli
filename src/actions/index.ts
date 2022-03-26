@@ -1,5 +1,7 @@
-export { default as addTask } from "./addTask.js";
-export { default as viewTask } from "./viewTask.js";
-export { default as viewTaskDate } from "./viewTaskDate.js";
-export { default as doneTask } from "./doneTask.js";
-export { default as removeTask } from "./removeTask.js";
+export { default as add } from "./add";
+export { default as list } from "./list";
+export { default as listDate } from "./listDate";
+export { default as listAll } from "./listAll";
+export { default as done } from "./done";
+export { default as remove } from "./remove";
+export { default as addProj } from "./addProj";

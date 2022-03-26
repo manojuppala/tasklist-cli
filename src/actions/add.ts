@@ -9,7 +9,8 @@ const STORAGE_PATH = homedir() + "/.tasklist/tasklist.json";
 // create /.tasklist/tasklist.json if dosent exist already
 const default_data = { default: [] };
 if (!fs.existsSync(STORAGE_PATH)) {
-  fs.mkdirSync(homedir() + "/.tasklist");
+  if (!fs.existsSync(homedir() + "/.tasklist"))
+    fs.mkdirSync(homedir() + "/.tasklist");
   fs.writeFileSync(STORAGE_PATH, JSON.stringify(default_data));
 }
 
@@ -18,13 +19,13 @@ let tasks = JSON.parse(fs.readFileSync(STORAGE_PATH, "utf-8"));
 inquirer.registerPrompt("date", inquirerDate as any);
 
 // function to add new tasks to list.
-export default async function addTask() {
+export default async function add() {
   const newTask = await inquirer.prompt({
     name: "taskName",
     type: "input",
     message: "Task name",
     default() {
-      return "new task";
+      return "New task";
     },
   });
   const confirmDueDate = await inquirer.prompt({

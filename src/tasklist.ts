@@ -3,7 +3,14 @@
 import * as chalk from "chalk";
 import * as inquirer from "inquirer";
 import * as yargs from "yargs";
-import { addTask, viewTask, viewTaskDate, doneTask } from "./actions/index.js";
+import {
+  add,
+  list,
+  listDate,
+  done,
+  listAll,
+  addProj,
+} from "./actions/index.js";
 
 // function to initialize tasklist-cli
 async function taskList() {
@@ -39,25 +46,37 @@ async function taskList() {
       (yargs.argv as any)._[0] === "ls"
     ) {
       console.clear();
-      viewTask();
+      list();
+    } else if (
+      (yargs.argv as any)._[0] === "listall" ||
+      (yargs.argv as any)._[0] === "la"
+    ) {
+      console.clear();
+      listAll();
     } else if (
       (yargs.argv as any)._[0] === "listdate" ||
       (yargs.argv as any)._[0] === "ld"
     ) {
       console.clear();
-      viewTaskDate();
+      listDate();
     } else if (
       (yargs.argv as any)._[0] === "add" ||
       (yargs.argv as any)._[0] === "a"
     ) {
       console.clear();
-      addTask();
+      add();
     } else if (
       (yargs.argv as any)._[0] === "done" ||
       (yargs.argv as any)._[0] === "d"
     ) {
       console.clear();
-      doneTask();
+      done();
+    } else if (
+      (yargs.argv as any)._[0] === "addproj" ||
+      (yargs.argv as any)._[0] === "ap"
+    ) {
+      console.clear();
+      addProj();
     } else {
       yargs.showHelp();
     }
@@ -73,12 +92,12 @@ async function taskList() {
       pageSize: chooseTaskList.length,
     });
     console.clear();
-    if (Responses.Response === "📑 View tasks") {
-      viewTask();
+    if (Responses.Response === "📑 List tasks") {
+      list();
     } else if (Responses.Response === "📝 Add new task") {
-      addTask();
+      add();
     } else if (Responses.Response === "✅ Done tasks") {
-      doneTask();
+      done();
     } else {
       console.clear();
     }

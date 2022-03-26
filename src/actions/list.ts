@@ -2,7 +2,7 @@ import * as chalk from "chalk";
 import * as inquirer from "inquirer";
 import * as fs from "fs";
 import { homedir } from "os";
-import { default as removeTask } from "./removeTask.js";
+import { default as remove } from "./remove.js";
 
 const STORAGE_PATH = homedir() + "/.tasklist/tasklist.json";
 
@@ -15,8 +15,8 @@ type taskType = {
   date: string;
 };
 
-// function to view pending task list.
-export default async function viewTask() {
+// function to list pending tasks.
+export default async function list() {
   let taskList = [];
 
   tasks.default.forEach((task: taskType) => {
@@ -31,7 +31,7 @@ export default async function viewTask() {
     taskList.push(new inquirer.Separator());
     taskList.push(`${chalk.red("❌ cancel")}`);
 
-    const viewTasks = await inquirer.prompt({
+    const listTasks = await inquirer.prompt({
       name: "selectTask",
       type: "list",
       message: "📝 Choose a task to mark ✅ done",
@@ -39,11 +39,11 @@ export default async function viewTask() {
       pageSize: taskList.length,
     });
 
-    if (viewTasks.selectTask === `${chalk.red("❌ cancel")}`) {
+    if (listTasks.selectTask === `${chalk.red("❌ cancel")}`) {
       console.clear();
       console.log(`No task Choosen.`);
     } else {
-      await removeTask(viewTasks.selectTask);
+      await remove(listTasks.selectTask);
     }
   } else {
     console.clear();

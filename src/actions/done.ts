@@ -3,7 +3,7 @@ import * as inquirer from "inquirer";
 import * as fs from "fs";
 import { createSpinner } from "nanospinner";
 import { homedir } from "os";
-import { default as removeTask } from "./removeTask.js";
+import { default as remove } from "./remove.js";
 
 const STORAGE_PATH = homedir() + "/.tasklist/tasklist.json";
 
@@ -19,7 +19,7 @@ type taskType = {
 };
 
 // function to add tasks to donetask list.
-export default async function doneTask() {
+export default async function done() {
   let taskList = [];
   tasks.default.forEach((task: taskType) => {
     if (task.status) {
@@ -55,7 +55,7 @@ export default async function doneTask() {
       console.clear();
       console.log(`No task Selected.`);
     } else {
-      await removeTask(doneTasks.selectTask);
+      await remove(doneTasks.selectTask);
     }
   } else {
     console.clear();
