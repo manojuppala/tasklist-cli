@@ -3,13 +3,14 @@
 import * as yargs from "yargs";
 import {
   add,
-  addTo,
-  list,
-  listDate,
-  done,
-  listAll,
   addProj,
+  addTo,
+  done,
+  list,
+  listAll,
+  listDate,
   listProj,
+  removeProj,
 } from "./actions/index.js";
 
 // function to initialize tasklist-cli
@@ -90,6 +91,11 @@ async function taskList() {
   ) {
     console.clear();
     listProj();
+  } else if ((yargs.argv as any)._[0] === "rm") {
+    console.clear();
+    (yargs.argv as any)._[1]
+      ? removeProj((yargs.argv as any)._[1])
+      : yargs.showHelp();
   } else {
     yargs.showHelp();
   }

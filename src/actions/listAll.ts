@@ -22,8 +22,8 @@ export default async function listAll() {
     tasks[proj].forEach((task: taskType) => {
       if (!task.status) {
         taskList.push({
-          value: task.id,
-          name: task.name + `${chalk.red(proj)}`,
+          value: task.id + "&@^$%" + proj,
+          name: task.name + ` (${chalk.blue(proj)})`,
         });
       }
     });
@@ -45,7 +45,10 @@ export default async function listAll() {
       console.clear();
       console.log(`No task Choosen.`);
     } else {
-      await remove(listTasks.selectTask);
+      await remove(
+        parseInt(listTasks.selectTask.split("&@^$%")[0]),
+        listTasks.selectTask.split("&@^$%")[1]
+      );
     }
   } else {
     console.clear();

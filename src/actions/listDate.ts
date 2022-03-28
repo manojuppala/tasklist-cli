@@ -71,7 +71,7 @@ export default async function listDate(proj: string = "default") {
       console.clear();
       console.log(`No task Choosen.`);
     } else {
-      await remove(listTasks.selectTask);
+      await remove(listTasks.selectTask, proj);
     }
   } else {
     console.clear();

@@ -55,7 +55,7 @@ export default async function done(proj: string = "default") {
       console.clear();
       console.log(`No task Selected.`);
     } else {
-      await remove(doneTasks.selectTask);
+      await remove(doneTasks.selectTask, proj);
     }
   } else {
     console.clear();

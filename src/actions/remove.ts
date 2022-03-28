@@ -14,8 +14,11 @@ type taskType = {
 };
 
 // function to revoke or mark done a task.
-export default async function removeTask(removedTaskId: number) {
-  tasks.default.forEach((task: taskType) => {
+export default async function removeTask(
+  removedTaskId: number,
+  proj: string = "default"
+) {
+  tasks[proj].forEach((task: taskType) => {
     if (task.id === removedTaskId) {
       console.clear();
       task.status

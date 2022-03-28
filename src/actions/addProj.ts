@@ -25,8 +25,15 @@ export default async function addProj() {
     },
   });
   console.clear();
-
-  tasks[newList.listName] = [];
-  fs.writeFileSync(STORAGE_PATH, JSON.stringify(tasks));
-  console.log(`New project ${chalk.yellow(newList.listName)} created.`);
+  if (Object.keys(tasks).includes(newList.listName)) {
+    console.log(
+      `${chalk.red("Project with name")} ${chalk.yellow(
+        newList.listName
+      )} ${chalk.red("already exists!")}`
+    );
+  } else {
+    tasks[newList.listName] = [];
+    fs.writeFileSync(STORAGE_PATH, JSON.stringify(tasks));
+    console.log(`New project ${chalk.yellow(newList.listName)} created.`);
+  }
 }
