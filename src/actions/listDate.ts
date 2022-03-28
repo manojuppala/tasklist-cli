@@ -16,9 +16,9 @@ type taskType = {
 };
 
 // function to list pending tasks with date.
-export default async function listDate() {
+export default async function listDate(proj: string = "default") {
   let taskList = [];
-  let sortDateArray = tasks.default;
+  let sortDateArray = tasks[proj];
   sortDateArray.sort(
     (a: taskType, b: taskType) => +new Date(a.date) - +new Date(b.date)
   );

@@ -16,10 +16,10 @@ type taskType = {
 };
 
 // function to list pending tasks.
-export default async function list() {
+export default async function list(proj: string = "default") {
   let taskList = [];
 
-  tasks.default.forEach((task: taskType) => {
+  tasks[proj].forEach((task: taskType) => {
     if (!task.status) {
       taskList.push({
         value: task.id,

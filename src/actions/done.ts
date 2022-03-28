@@ -19,9 +19,9 @@ type taskType = {
 };
 
 // function to add tasks to donetask list.
-export default async function done() {
+export default async function done(proj: string = "default") {
   let taskList = [];
-  tasks.default.forEach((task: taskType) => {
+  tasks[proj].forEach((task: taskType) => {
     if (task.status) {
       taskList.push({ value: task.id, name: task.name });
     }
@@ -43,9 +43,9 @@ export default async function done() {
       console.clear();
       const spinner = createSpinner("Clearing tasks...").start();
       await sleep(1000);
-      for (let i = 0; i < tasks.default.length; i++) {
-        if (tasks.default[i].status) {
-          tasks.default.splice(i, 1);
+      for (let i = 0; i < tasks[proj].length; i++) {
+        if (tasks[proj][i].status) {
+          tasks[proj].splice(i, 1);
           i--;
         }
       }

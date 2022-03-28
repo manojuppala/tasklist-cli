@@ -1,15 +1,15 @@
 #!/usr/bin/env node
 
-import * as chalk from "chalk";
-import * as inquirer from "inquirer";
 import * as yargs from "yargs";
 import {
   add,
+  addTo,
   list,
   listDate,
   done,
   listAll,
   addProj,
+  listProj,
 } from "./actions/index.js";
 
 // function to initialize tasklist-cli
@@ -40,67 +40,58 @@ async function taskList() {
     .help("help")
     .alias("v", "version").argv;
 
-  if ((yargs.argv as any)._[0]) {
-    if (
-      (yargs.argv as any)._[0] === "list" ||
-      (yargs.argv as any)._[0] === "ls"
-    ) {
-      console.clear();
-      list();
-    } else if (
-      (yargs.argv as any)._[0] === "listall" ||
-      (yargs.argv as any)._[0] === "la"
-    ) {
-      console.clear();
-      listAll();
-    } else if (
-      (yargs.argv as any)._[0] === "listdate" ||
-      (yargs.argv as any)._[0] === "ld"
-    ) {
-      console.clear();
-      listDate();
-    } else if (
-      (yargs.argv as any)._[0] === "add" ||
-      (yargs.argv as any)._[0] === "a"
-    ) {
-      console.clear();
-      add();
-    } else if (
-      (yargs.argv as any)._[0] === "done" ||
-      (yargs.argv as any)._[0] === "d"
-    ) {
-      console.clear();
-      done();
-    } else if (
-      (yargs.argv as any)._[0] === "addproj" ||
-      (yargs.argv as any)._[0] === "ap"
-    ) {
-      console.clear();
-      addProj();
-    } else {
-      yargs.showHelp();
-    }
-  } else {
-    let chooseTaskList = ["📑 View tasks", "📝 Add new task", "✅ Done tasks"];
-    chooseTaskList.push(new inquirer.Separator() as any);
-    chooseTaskList.push(`${chalk.red("🛑 Exit")}`);
-    const Responses = await inquirer.prompt({
-      name: "Response",
-      type: "list",
-      message: "Choose options",
-      choices: chooseTaskList,
-      pageSize: chooseTaskList.length,
-    });
+  if (
+    (yargs.argv as any)._[0] === "list" ||
+    (yargs.argv as any)._[0] === "ls"
+  ) {
     console.clear();
-    if (Responses.Response === "📑 List tasks") {
-      list();
-    } else if (Responses.Response === "📝 Add new task") {
-      add();
-    } else if (Responses.Response === "✅ Done tasks") {
-      done();
-    } else {
-      console.clear();
-    }
+    (yargs.argv as any)._[1] ? list((yargs.argv as any)._[1]) : list();
+  } else if (
+    (yargs.argv as any)._[0] === "listall" ||
+    (yargs.argv as any)._[0] === "la"
+  ) {
+    console.clear();
+    listAll();
+  } else if (
+    (yargs.argv as any)._[0] === "listdate" ||
+    (yargs.argv as any)._[0] === "ld"
+  ) {
+    console.clear();
+    (yargs.argv as any)._[1] ? listDate((yargs.argv as any)._[1]) : listDate();
+  } else if (
+    (yargs.argv as any)._[0] === "add" ||
+    (yargs.argv as any)._[0] === "a"
+  ) {
+    console.clear();
+    add();
+  } else if (
+    (yargs.argv as any)._[0] === "addto" ||
+    (yargs.argv as any)._[0] === "at"
+  ) {
+    console.clear();
+    (yargs.argv as any)._[1]
+      ? addTo((yargs.argv as any)._[1])
+      : yargs.showHelp();
+  } else if (
+    (yargs.argv as any)._[0] === "done" ||
+    (yargs.argv as any)._[0] === "d"
+  ) {
+    console.clear();
+    (yargs.argv as any)._[1] ? done((yargs.argv as any)._[1]) : done();
+  } else if (
+    (yargs.argv as any)._[0] === "addproj" ||
+    (yargs.argv as any)._[0] === "ap"
+  ) {
+    console.clear();
+    addProj();
+  } else if (
+    (yargs.argv as any)._[0] === "listproj" ||
+    (yargs.argv as any)._[0] === "lsp"
+  ) {
+    console.clear();
+    listProj();
+  } else {
+    yargs.showHelp();
   }
 }
 
