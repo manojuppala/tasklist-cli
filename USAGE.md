@@ -1,63 +1,114 @@
 # [tasklist-cli](https://github.com/manojuppala/tasklist-cli) Usage
 
-you can either use just the task command or task command with a action.
+you can perform any of the actions listed below.
 
 ```shell
-task
-```
-
-```shell
-task [action]
+task [action] [project_name]
 ```
 
 ## Actions
 
 ### `add`
 
-- returns a input prompt which takes the input of new task name.
+- Adds a new task to default list (or project).
 
 ```shell
 task add
 task a
 ```
 
-### `list`
+### `addproj`
 
-- returns the list of all tasks that are incomplete.
-- you can either select a task to mark as done or cancel.
+- Creates a new project with the name specified.
 
 ```shell
-task list
-task l
+task addproj
+task ap
 ```
 
-### `listdate`
+### `addto`
 
-- returns the list of all tasks that are incomplete along with their due dates.
-- you can either select a task to mark as done or cancel.
+- Adds a new task to specified project.
 
 ```shell
-task list
-task ld
+task addto [project_name]
+task at [project_name]
 ```
 
 ### `done`
 
-- returns the list of all tasks that are marked done.
-- you can select a task to revoke and mark as undone.
-  or
-- you can choose to clear all completed tasks(they will be gone forever).
+- Lists all the tasks that are marked done.
 
 ```shell
-task done
-task d
+task done [project_name]
+task d [project_name]
 ```
 
-### `help`
+_Note: [project_name] is optional._
 
-- usage and description of tasklist-cli commands.
+### `list`
+
+- Lists tasks that are marked undone from specified project.
 
 ```shell
-task help
-task -h
+task list [project_name]
+task l [project_name]
+```
+
+_Note: [project_name] is optional._
+
+### `listall`
+
+- Lists tasks that are marked undone from all projects.
+
+```shell
+task listall
+task la
+```
+
+### `listdate`
+
+- Lists tasks marked undone along with due date.
+
+```shell
+task listdate [project_name]
+task ld [project_name]
+```
+
+_Note: [project_name] is optional._
+
+### `listproj`
+
+- Lists all available projects.
+
+```shell
+task listproj
+task lp
+```
+
+### `remove`
+
+- Deletes a project permanently.
+
+```shell
+task remove [project_name]
+task rm [project_name]
+```
+
+### `--help`
+
+- Show help.
+
+```shell
+task [action] --help
+task [action] -h
+```
+
+### `--version`
+
+- Show version number.
+
+```shell
+task --version
+task -v
 ```
