@@ -47,6 +47,7 @@ export default async function add() {
     name: newTask.taskName,
     status: false,
     date: confirmDueDate.dueDate ? (taskDueDate as any).dueDate : "no due date",
+    priority: null,
   });
 
   fs.writeFileSync(STORAGE_PATH, JSON.stringify(tasks));

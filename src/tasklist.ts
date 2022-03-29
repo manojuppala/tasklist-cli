@@ -11,53 +11,66 @@ import {
   listDate,
   listProj,
   removeProj,
+  fileCheck,
 } from "./actions/index.js";
 
 // function to initialize tasklist-cli
 async function taskList() {
   yargs
-    .usage("Usage: task [command]")
+    .usage("Usage: task [command] [project_name]")
     .command(
-      "list",
-      "- lists all the tasks that are marked undone.",
+      "add",
+      "- Adds a new task to default list (or project).",
       (yargs) => {
-        yargs.usage(`Usage: task list (or) task ls`);
+        yargs.usage(`Usage: task add (or) task a`);
       }
     )
-    .command(
-      "listdate",
-      "- lists all the tasks that are marked undone with due dates.",
-      (yargs) => {
-        yargs.usage(`Usage: task listdate (or) task ld`);
-      }
-    )
-    .command("add", "- adds a new task to the task list.", (yargs) => {
-      yargs.usage(`Usage: task add (or) task a`);
-    })
-    .command("done", "- lists all the tasks that are marked.", (yargs) => {
-      yargs.usage(`Usage: task done (or) task d`);
-    })
-    .command("listall", "- lists all the tasks from all projects.", (yargs) => {
-      yargs.usage(`Usage: task listall (or) task la`);
-    })
-    .command("addto", "- adds a new task to a specific project.", (yargs) => {
-      yargs.usage(
-        `Usage: task addto [project_name] (or) task at [project_name]`
-      );
-    })
     .command(
       "addproj",
-      "- creates a new empty project with the name specified.",
+      "- Creates a new project with the name specified.",
       (yargs) => {
         yargs.usage(
           `Usage: task addproj [new_project_name] (or) task ap [new_project_name]`
         );
       }
     )
-    .command("listproj", "- lists all the available projects.", (yargs) => {
+    .command("addto", "- Adds a new task to specified project.", (yargs) => {
+      yargs.usage(
+        `Usage: task addto [project_name] (or) task at [project_name]`
+      );
+    })
+    .command("done", "- Lists all the tasks that are marked done.", (yargs) => {
+      yargs.usage(`Usage: task done (or) task d`);
+    })
+    .command(
+      "list",
+      "- Lists tasks that are marked undone from specified project.",
+      (yargs) => {
+        yargs.usage(
+          `Usage: task list [project_name] (or) task ls [project_name]`
+        );
+      }
+    )
+    .command(
+      "listall",
+      "- Lists tasks that are marked undone from all projects.",
+      (yargs) => {
+        yargs.usage(`Usage: task listall (or) task la`);
+      }
+    )
+    .command(
+      "listdate",
+      "- Lists tasks marked undone along with due date.",
+      (yargs) => {
+        yargs.usage(
+          `Usage: task listdate [project_name] (or) task ld [project_name]`
+        );
+      }
+    )
+    .command("listproj", "- Lists all available projects.", (yargs) => {
       yargs.usage(`Usage: task listproj (or) task lp`);
     })
-    .command("remove", "- removes the specified project.", (yargs) => {
+    .command("remove", "- Deletes a project permanently.", (yargs) => {
       yargs.usage(
         `Usage: task remove [project_name] (or) task rm [project_name]`
       );

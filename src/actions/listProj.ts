@@ -8,7 +8,7 @@ const STORAGE_PATH = homedir() + "/.tasklist/tasklist.json";
 
 let tasks = JSON.parse(fs.readFileSync(STORAGE_PATH, "utf-8"));
 
-// function to list pending projects.
+// function to list available projects.
 export default async function listProj() {
   let projList = [];
   Object.keys(tasks).forEach((task: string) => {

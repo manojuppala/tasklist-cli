@@ -20,45 +20,49 @@ type taskType = {
 
 // function to add tasks to donetask list.
 export default async function done(proj: string = "default") {
-  let taskList = [];
-  tasks[proj].forEach((task: taskType) => {
-    if (task.status) {
-      taskList.push({ value: task.id, name: task.name });
-    }
-  });
-  if (taskList.length) {
-    taskList.push(new inquirer.Separator());
-    taskList.push(`${chalk.yellow("🗑️ clear all")}`);
-    taskList.push(`${chalk.red("❌ cancel")}`);
-
-    const doneTasks = await inquirer.prompt({
-      name: "selectTask",
-      type: "list",
-      message: "✅ Done tasks list",
-      choices: taskList,
-      pageSize: taskList.length,
-    });
-
-    if (doneTasks.selectTask === `${chalk.yellow("🗑️ clear all")}`) {
-      console.clear();
-      const spinner = createSpinner("Clearing tasks...").start();
-      await sleep(1000);
-      for (let i = 0; i < tasks[proj].length; i++) {
-        if (tasks[proj][i].status) {
-          tasks[proj].splice(i, 1);
-          i--;
-        }
+  if (Object.keys(tasks).includes(proj)) {
+    let taskList = [];
+    tasks[proj].forEach((task: taskType) => {
+      if (task.status) {
+        taskList.push({ value: task.id, name: task.name });
       }
-      fs.writeFileSync(STORAGE_PATH, JSON.stringify(tasks));
-      spinner.success({ text: `All tasks have been cleared` });
-    } else if (doneTasks.selectTask === `${chalk.red("❌ cancel")}`) {
-      console.clear();
-      console.log(`No task Selected.`);
+    });
+    if (taskList.length) {
+      taskList.push(new inquirer.Separator());
+      taskList.push(`${chalk.yellow("🗑️ clear all")}`);
+      taskList.push(`${chalk.red("❌ cancel")}`);
+
+      const doneTasks = await inquirer.prompt({
+        name: "selectTask",
+        type: "list",
+        message: "✅ Done tasks list",
+        choices: taskList,
+        pageSize: taskList.length,
+      });
+
+      if (doneTasks.selectTask === `${chalk.yellow("🗑️ clear all")}`) {
+        console.clear();
+        const spinner = createSpinner("Clearing tasks...").start();
+        await sleep(1000);
+        for (let i = 0; i < tasks[proj].length; i++) {
+          if (tasks[proj][i].status) {
+            tasks[proj].splice(i, 1);
+            i--;
+          }
+        }
+        fs.writeFileSync(STORAGE_PATH, JSON.stringify(tasks));
+        spinner.success({ text: `All tasks have been cleared` });
+      } else if (doneTasks.selectTask === `${chalk.red("❌ cancel")}`) {
+        console.clear();
+        console.log(`No task Selected.`);
+      } else {
+        await remove(doneTasks.selectTask, proj);
+      }
     } else {
-      await remove(doneTasks.selectTask, proj);
+      console.clear();
+      console.log(`No tasks are marked ✅ done.`);
     }
   } else {
-    console.clear();
-    console.log(`No tasks are marked ✅ done.`);
+    console.log(`${chalk.red(proj)}: No such project.`);
   }
 }

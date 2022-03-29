@@ -2,17 +2,14 @@ import * as chalk from "chalk";
 import * as inquirer from "inquirer";
 import * as fs from "fs";
 import { homedir } from "os";
-import fileCheck from "./fileCheck";
 
 const STORAGE_PATH = homedir() + "/.tasklist/tasklist.json";
-
-fileCheck();
 
 let tasks = JSON.parse(fs.readFileSync(STORAGE_PATH, "utf-8"));
 
 export default async function addProj() {
-  const newList = await inquirer.prompt({
-    name: "listName",
+  const newProj = await inquirer.prompt({
+    name: "projName",
     type: "input",
     message: "Project name",
     default() {
@@ -20,15 +17,15 @@ export default async function addProj() {
     },
   });
   console.clear();
-  if (Object.keys(tasks).includes(newList.listName)) {
+  if (Object.keys(tasks).includes(newProj.projName)) {
     console.log(
       `${chalk.red("Project with name")} ${chalk.yellow(
-        newList.listName
+        newProj.projName
       )} ${chalk.red("already exists!")}`
     );
   } else {
-    tasks[newList.listName] = [];
+    tasks[newProj.projName] = [];
     fs.writeFileSync(STORAGE_PATH, JSON.stringify(tasks));
-    console.log(`New project ${chalk.yellow(newList.listName)} created.`);
+    console.log(`New project ${chalk.yellow(newProj.projName)} created.`);
   }
 }

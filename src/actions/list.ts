@@ -17,36 +17,40 @@ type taskType = {
 
 // function to list pending tasks.
 export default async function list(proj: string = "default") {
-  let taskList = [];
+  if (Object.keys(tasks).includes(proj)) {
+    let taskList = [];
 
-  tasks[proj].forEach((task: taskType) => {
-    if (!task.status) {
-      taskList.push({
-        value: task.id,
-        name: task.name,
-      });
-    }
-  });
-  if (taskList.length) {
-    taskList.push(new inquirer.Separator());
-    taskList.push(`${chalk.red("❌ cancel")}`);
-
-    const listTasks = await inquirer.prompt({
-      name: "selectTask",
-      type: "list",
-      message: "📝 Choose a task to mark ✅ done",
-      choices: taskList,
-      pageSize: taskList.length,
+    tasks[proj].forEach((task: taskType) => {
+      if (!task.status) {
+        taskList.push({
+          value: task.id,
+          name: task.name,
+        });
+      }
     });
+    if (taskList.length) {
+      taskList.push(new inquirer.Separator());
+      taskList.push(`${chalk.red("❌ cancel")}`);
 
-    if (listTasks.selectTask === `${chalk.red("❌ cancel")}`) {
-      console.clear();
-      console.log(`No task Choosen.`);
+      const listTasks = await inquirer.prompt({
+        name: "selectTask",
+        type: "list",
+        message: `📝 Choose a task to mark ✅ done (${chalk.yellow(proj)})`,
+        choices: taskList,
+        pageSize: taskList.length,
+      });
+
+      if (listTasks.selectTask === `${chalk.red("❌ cancel")}`) {
+        console.clear();
+        console.log(`No task Choosen.`);
+      } else {
+        await remove(listTasks.selectTask, proj);
+      }
     } else {
-      await remove(listTasks.selectTask, proj);
+      console.clear();
+      console.log(`No tasks are marked todo.`);
     }
   } else {
-    console.clear();
-    console.log(`No tasks are marked todo.`);
+    console.log(`${chalk.red(proj)}: No such project.`);
   }
 }

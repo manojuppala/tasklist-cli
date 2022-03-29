@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/tasklist-cli.png" alt="tasklist-cli" width="200"/>
+  <img src="assets/tasklist-cli.png" alt="tasklist-cli" width="150"/>
 </p>
 
 # Tasklist-cli
@@ -16,6 +16,7 @@ Tasklist-cli is a simple and elegant command line application to manage tasks an
 - add todo tasks.
 - mark tasks as done.
 - add due date to a task.
+- add subtasks to projects.
 - revoke done tasks.
 - delete all done tasks.
 
@@ -37,21 +38,17 @@ you should now be able to use the command `task`
 
 ## Usage
 
-you can either use just the task command or task command with a action.
+you can perform any of the actions listed below.
 
 ```shell
-task
-```
-
-```shell
-task [action]
+task [action] [project_name]
 ```
 
 ## Actions
 
 ### `add`
 
-- returns a input prompt which takes the input of new task name.
+- Adds a new task to default list (or project).
 
 ```shell
 task add
@@ -60,24 +57,40 @@ task a
 
 ### `list`
 
-- returns the list of all tasks that are incomplete.
-- you can either select a task to mark as done or cancel.
+- Lists tasks that are marked undone from specified project.
 
 ```shell
-task list
-task ls
+task list [project_name]
+task ls [project_name]
+```
+
+### `listdate`
+
+- Lists tasks marked undone along with due date.
+
+```shell
+task listdate [project_name]
+task ld [project_name]
+```
+
+_Note: [project_name] is optional._
+
+### `listproj`
+
+- Lists all available projects.
+
+```shell
+task listproj
+task lp
 ```
 
 ### `done`
 
-- returns the list of all tasks that are marked done.
-- you can select a task to revoke and mark as undone.
-  or
-- you can choose to clear all completed tasks(they will be gone forever).
+- Lists all the tasks that are marked done.
 
 ```shell
-task done
-task d
+task done [project_name]
+task d [project_name]
 ```
 
 Read about all the possible commands in [USAGE](https://github.com/manojuppala/tasklist-cli/blob/main/USAGE.md) file.
