@@ -8,3 +8,4 @@ export { default as remove } from "./remove";
 export { default as addProj } from "./addProj";
 export { default as listProj } from "./listProj";
 export { default as removeProj } from "./removeProj";
+export { default as fileCheck } from "./fileCheck";

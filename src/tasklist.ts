@@ -37,6 +37,31 @@ async function taskList() {
     .command("done", "- lists all the tasks that are marked.", (yargs) => {
       yargs.usage(`Usage: task done (or) task d`);
     })
+    .command("listall", "- lists all the tasks from all projects.", (yargs) => {
+      yargs.usage(`Usage: task listall (or) task la`);
+    })
+    .command("addto", "- adds a new task to a specific project.", (yargs) => {
+      yargs.usage(
+        `Usage: task addto [project_name] (or) task at [project_name]`
+      );
+    })
+    .command(
+      "addproj",
+      "- creates a new empty project with the name specified.",
+      (yargs) => {
+        yargs.usage(
+          `Usage: task addproj [new_project_name] (or) task ap [new_project_name]`
+        );
+      }
+    )
+    .command("listproj", "- lists all the available projects.", (yargs) => {
+      yargs.usage(`Usage: task listproj (or) task lp`);
+    })
+    .command("remove", "- removes the specified project.", (yargs) => {
+      yargs.usage(
+        `Usage: task remove [project_name] (or) task rm [project_name]`
+      );
+    })
     .alias("h", "help")
     .help("help")
     .alias("v", "version").argv;
@@ -87,11 +112,14 @@ async function taskList() {
     addProj();
   } else if (
     (yargs.argv as any)._[0] === "listproj" ||
-    (yargs.argv as any)._[0] === "lsp"
+    (yargs.argv as any)._[0] === "lp"
   ) {
     console.clear();
     listProj();
-  } else if ((yargs.argv as any)._[0] === "rm") {
+  } else if (
+    (yargs.argv as any)._[0] === "remove" ||
+    (yargs.argv as any)._[0] === "rm"
+  ) {
     console.clear();
     (yargs.argv as any)._[1]
       ? removeProj((yargs.argv as any)._[1])

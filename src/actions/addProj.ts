@@ -2,16 +2,11 @@ import * as chalk from "chalk";
 import * as inquirer from "inquirer";
 import * as fs from "fs";
 import { homedir } from "os";
+import fileCheck from "./fileCheck";
 
 const STORAGE_PATH = homedir() + "/.tasklist/tasklist.json";
 
-// create a new project.
-const default_data = { default: [] };
-if (!fs.existsSync(STORAGE_PATH)) {
-  if (!fs.existsSync(homedir() + "/.tasklist"))
-    fs.mkdirSync(homedir() + "/.tasklist");
-  fs.writeFileSync(STORAGE_PATH, JSON.stringify(default_data));
-}
+fileCheck();
 
 let tasks = JSON.parse(fs.readFileSync(STORAGE_PATH, "utf-8"));
 

@@ -14,7 +14,7 @@ export default async function delProj(proj: string) {
   const confirmDelete = await inquirer.prompt({
     name: "choice",
     type: "confirm",
-    message: `Are you sure you want to delete ${proj}?`,
+    message: `Are you sure to delete ${proj}?`,
     default() {
       return false;
     },
