@@ -36,7 +36,8 @@ export default async function listAll() {
     const listTasks = await inquirer.prompt({
       name: "selectTask",
       type: "list",
-      message: "📝 Choose a task to mark ✅ done",
+      prefix: "📝",
+      message: "Choose a task to mark done",
       choices: taskList,
       pageSize: taskList.length,
     });

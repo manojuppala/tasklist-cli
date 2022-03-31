@@ -63,7 +63,8 @@ export default async function listDate(proj: string = "default") {
       const listTasks = await inquirer.prompt({
         name: "selectTask",
         type: "list",
-        message: `📝 Choose a task to mark ✅ done (${chalk.yellow(proj)})`,
+        prefix: "📅",
+        message: `Choose a task to mark done (${chalk.yellow(proj)})`,
         choices: taskList,
         pageSize: taskList.length,
       });

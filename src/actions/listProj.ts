@@ -22,6 +22,7 @@ export default async function listProj() {
     const listProjs = await inquirer.prompt({
       name: "selectProj",
       type: "list",
+      prefix: "📁",
       message: "Choose a project to list tasks.",
       choices: projList,
       pageSize: projList.length,

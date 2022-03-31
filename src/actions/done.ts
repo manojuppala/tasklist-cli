@@ -35,7 +35,8 @@ export default async function done(proj: string = "default") {
       const doneTasks = await inquirer.prompt({
         name: "selectTask",
         type: "list",
-        message: "✅ Done tasks list",
+        prefix: "✅",
+        message: "Done tasks list",
         choices: taskList,
         pageSize: taskList.length,
       });
