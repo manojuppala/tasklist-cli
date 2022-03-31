@@ -11,6 +11,7 @@ export default async function addProj() {
   const newProj = await inquirer.prompt({
     name: "projName",
     type: "input",
+    prefix: "📁",
     message: "Project name",
     default() {
       return "New project";

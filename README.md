@@ -15,10 +15,10 @@ Tasklist-cli is a simple and elegant command line application to manage tasks an
 
 - add todo tasks.
 - mark tasks as done.
+- revoke done tasks.
+- delete done tasks.
 - add due date to a task.
 - add subtasks to projects.
-- revoke done tasks.
-- delete all done tasks.
 
 ## Preview
 
@@ -99,6 +99,7 @@ Read about all the possible commands in [USAGE](https://github.com/manojuppala/t
 
 - [chalk](https://www.npmjs.com/package/chalk)
 - [inquirer](https://www.npmjs.com/package/inquirer)
+- [inquirer-date-prompt](https://www.npmjs.com/package/inquirer-date-prompt)
 - [nanospinner](https://www.npmjs.com/package/nanospinner)
 - [yargs](https://www.npmjs.com/package/yargs)
 
@@ -113,5 +114,5 @@ that the license and copyright notice must be provided with the software.
 ```
 
 <a href='https://github.com/manojuppala/todo-list-cli/blob/main/LICENSE'>
-<img src="assets/mit-license.png" alt="camKapture" width="150"/>
+<img src="assets/mit-license.png" alt="tasklist-cli" width="150"/>
 </a>

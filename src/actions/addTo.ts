@@ -16,6 +16,7 @@ export default async function addTo(proj: string = "default") {
     const newTask = await inquirer.prompt({
       name: "taskName",
       type: "input",
+      prefix: "❓",
       message: "Task name",
       default() {
         return "New task";
@@ -24,6 +25,7 @@ export default async function addTo(proj: string = "default") {
     const confirmDueDate = await inquirer.prompt({
       name: "dueDate",
       type: "confirm",
+      prefix: "❓",
       message: "Add due date",
       default() {
         return false;
@@ -33,6 +35,7 @@ export default async function addTo(proj: string = "default") {
       ? await inquirer.prompt({
           name: "dueDate",
           type: "date",
+          prefix: "📅",
           message: "Due date",
           default() {
             return new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
