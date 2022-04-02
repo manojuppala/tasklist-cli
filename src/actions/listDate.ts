@@ -77,7 +77,7 @@ export default async function listDate(proj: string = "default") {
       }
     } else {
       console.clear();
-      console.log(`No tasks are marked todo.`);
+      console.log(`No tasks are marked 📝todo in ${chalk.yellow(proj)}.`);
     }
   } else {
     console.log(`${chalk.red(proj)}: No such project.`);

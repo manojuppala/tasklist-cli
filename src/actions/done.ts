@@ -61,7 +61,7 @@ export default async function done(proj: string = "default") {
       }
     } else {
       console.clear();
-      console.log(`No tasks are marked ✅ done.`);
+      console.log(`No tasks are marked ✅done.`);
     }
   } else {
     console.log(`${chalk.red(proj)}: No such project.`);

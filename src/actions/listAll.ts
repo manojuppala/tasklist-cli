@@ -53,6 +53,6 @@ export default async function listAll() {
     }
   } else {
     console.clear();
-    console.log(`No tasks are marked todo.`);
+    console.log(`No tasks are marked 📝todo.`);
   }
 }
