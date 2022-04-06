@@ -11,12 +11,15 @@ let tasks = JSON.parse(fs.readFileSync(STORAGE_PATH, "utf-8"));
 inquirer.registerPrompt("date", inquirerDate as any);
 
 // function to add new tasks to a specified project.
-export default async function addTo(proj: string = "default") {
+export default async function addTo(
+  config: configType,
+  proj: string = "default"
+) {
   if (Object.keys(tasks).includes(proj)) {
     const newTask = await inquirer.prompt({
       name: "taskName",
       type: "input",
-      prefix: "❓",
+      prefix: config?.emoji ?? true ? "❓" : undefined,
       message: "Task name",
       default() {
         return "New task";
@@ -25,7 +28,7 @@ export default async function addTo(proj: string = "default") {
     const confirmDueDate = await inquirer.prompt({
       name: "dueDate",
       type: "confirm",
-      prefix: "❓",
+      prefix: config?.emoji ?? true ? "❓" : undefined,
       message: "Add due date",
       default() {
         return false;
@@ -35,7 +38,7 @@ export default async function addTo(proj: string = "default") {
       ? await inquirer.prompt({
           name: "dueDate",
           type: "date",
-          prefix: "📅",
+          prefix: config?.emoji ?? true ? "📅" : undefined,
           message: "Due date",
           default() {
             return new Date(new Date().getTime() + 24 * 60 * 60 * 1000);

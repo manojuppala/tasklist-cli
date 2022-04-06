@@ -15,6 +15,7 @@ type taskType = {
 
 // function to revoke or mark done a task.
 export default async function removeTask(
+  config: configType,
   removedTaskId: number,
   proj: string = "default"
 ) {
@@ -23,7 +24,11 @@ export default async function removeTask(
       console.clear();
       task.status
         ? console.log(`Task ${chalk.yellow(task.name)} has been revoked.`)
-        : console.log(`Task ${chalk.yellow(task.name)} is marked ✅ done.`);
+        : console.log(
+            `Task ${chalk.yellow(task.name)} is marked ${
+              config?.emoji ?? true ? "✅" : ""
+            } done.`
+          );
       task.status = !task.status;
     }
   });

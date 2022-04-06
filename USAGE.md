@@ -52,7 +52,7 @@ _Note: [project_name] is optional._
 
 ```shell
 task list [project_name]
-task l [project_name]
+task ls [project_name]
 ```
 
 _Note: [project_name] is optional._

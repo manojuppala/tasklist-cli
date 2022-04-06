@@ -19,7 +19,13 @@ type taskType = {
 };
 
 // function to add tasks to donetask list.
-export default async function done(proj: string = "default") {
+export default async function done(
+  config: configType,
+  proj: string = config?.default ?? "default"
+) {
+  const cancel = `${config?.emoji ?? true ? "❌ " : ""}cancel`;
+  const clearAll = `${config?.emoji ?? true ? "🗑️ " : ""}clear all`;
+
   if (Object.keys(tasks).includes(proj)) {
     let taskList = [];
     tasks[proj].forEach((task: taskType) => {
@@ -29,19 +35,19 @@ export default async function done(proj: string = "default") {
     });
     if (taskList.length) {
       taskList.push(new inquirer.Separator());
-      taskList.push(`${chalk.yellow("🗑️ clear all")}`);
-      taskList.push(`${chalk.red("❌ cancel")}`);
+      taskList.push(`${chalk.yellow(clearAll)}`);
+      taskList.push(`${chalk.red(cancel)}`);
 
       const doneTasks = await inquirer.prompt({
         name: "selectTask",
         type: "list",
-        prefix: "✅",
+        prefix: config?.emoji ?? true ? "✅" : undefined,
         message: "Done tasks list",
         choices: taskList,
         pageSize: taskList.length,
       });
 
-      if (doneTasks.selectTask === `${chalk.yellow("🗑️ clear all")}`) {
+      if (doneTasks.selectTask === `${chalk.yellow(clearAll)}`) {
         console.clear();
         const spinner = createSpinner("Clearing tasks...").start();
         await sleep(1000);
@@ -53,15 +59,17 @@ export default async function done(proj: string = "default") {
         }
         fs.writeFileSync(STORAGE_PATH, JSON.stringify(tasks));
         spinner.success({ text: `All tasks have been cleared` });
-      } else if (doneTasks.selectTask === `${chalk.red("❌ cancel")}`) {
+      } else if (doneTasks.selectTask === `${chalk.red(cancel)}`) {
         console.clear();
         console.log(`No task Selected.`);
       } else {
-        await remove(doneTasks.selectTask, proj);
+        await remove(config, doneTasks.selectTask, proj);
       }
     } else {
       console.clear();
-      console.log(`No tasks are marked ✅done.`);
+      console.log(
+        `No tasks are marked ${config?.emoji ?? true ? "✅" : ""}done.`
+      );
     }
   } else {
     console.log(`${chalk.red(proj)}: No such project.`);
