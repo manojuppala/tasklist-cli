@@ -13,7 +13,7 @@ let tasks = JSON.parse(fs.readFileSync(STORAGE_PATH, "utf-8"));
 
 inquirer.registerPrompt("date", inquirerDate as any);
 
-// function to add new tasks to list.
+// function to add new tasks to a project.
 export default async function add(
   config: configType,
   proj: string = config?.default ?? "default"
@@ -62,7 +62,9 @@ export default async function add(
     fs.writeFileSync(STORAGE_PATH, JSON.stringify(tasks));
     console.clear();
     console.log(
-      `New task ${chalk.yellow(newTask.taskName)} created.` +
+      `New task ${chalk.yellow(newTask.taskName)} created in ${chalk.blue(
+        proj
+      )}.` +
         (confirmDueDate.dueDate
           ? ` Due date: ${chalk.green(
               (taskDueDate as any).dueDate.toLocaleTimeString([], {

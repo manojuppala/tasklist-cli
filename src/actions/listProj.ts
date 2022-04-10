@@ -35,7 +35,7 @@ export default async function listProj(config: configType) {
       console.log(`No Project Choosen.`);
     } else {
       console.clear();
-      await list(listProjs.selectProj);
+      await list(config, listProjs.selectProj);
     }
   } else {
     console.clear();

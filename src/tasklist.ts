@@ -6,7 +6,6 @@ import { homedir } from "os";
 import {
   add,
   addProj,
-  addTo,
   done,
   help,
   list,
@@ -22,6 +21,9 @@ async function taskList() {
   const CONFIG = homedir() + "/.tasklist/config.json";
   let config;
   if (fs.existsSync(CONFIG)) {
+    if (fs.readFileSync(CONFIG).length === 0) {
+      fs.writeFileSync(CONFIG, JSON.stringify({}));
+    }
     config = JSON.parse(fs.readFileSync(CONFIG, "utf-8"));
   }
 
@@ -62,7 +64,7 @@ async function taskList() {
   ) {
     console.clear();
     (yargs.argv as any)._[1]
-      ? addTo(config, (yargs.argv as any)._[1])
+      ? add(config, (yargs.argv as any)._[1])
       : yargs.showHelp();
   } else if (
     (yargs.argv as any)._[0] === "done" ||
