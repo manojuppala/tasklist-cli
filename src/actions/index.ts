@@ -1,8 +1,8 @@
 export { default as add } from "./add";
 export { default as addProj } from "./addProj";
-export { default as addTo } from "./addTo";
 export { default as done } from "./done";
 export { default as fileCheck } from "./fileCheck";
+export { default as help } from "./help";
 export { default as list } from "./list";
 export { default as listAll } from "./listAll";
 export { default as listDate } from "./listDate";

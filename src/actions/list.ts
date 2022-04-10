@@ -16,7 +16,12 @@ type taskType = {
 };
 
 // function to list pending tasks.
-export default async function list(proj: string = "default") {
+export default async function list(
+  config: configType,
+  proj: string = config?.default ?? "default"
+) {
+  const cancel = `${config?.emoji ?? true ? "❌ " : ""}cancel`;
+
   if (Object.keys(tasks).includes(proj)) {
     let taskList = [];
 
@@ -30,26 +35,30 @@ export default async function list(proj: string = "default") {
     });
     if (taskList.length) {
       taskList.push(new inquirer.Separator());
-      taskList.push(`${chalk.red("❌ cancel")}`);
+      taskList.push(`${chalk.red(cancel)}`);
 
       const listTasks = await inquirer.prompt({
         name: "selectTask",
         type: "list",
-        prefix: "📝",
+        prefix: config?.emoji ?? true ? "📝" : undefined,
         message: `Choose a task to mark done (${chalk.yellow(proj)})`,
         choices: taskList,
         pageSize: taskList.length,
       });
 
-      if (listTasks.selectTask === `${chalk.red("❌ cancel")}`) {
+      if (listTasks.selectTask === `${chalk.red(cancel)}`) {
         console.clear();
         console.log(`No task Choosen.`);
       } else {
-        await remove(listTasks.selectTask, proj);
+        await remove(config, listTasks.selectTask, proj);
       }
     } else {
       console.clear();
-      console.log(`No tasks are marked todo.`);
+      console.log(
+        `No tasks are marked ${
+          config?.emoji ?? true ? "📝" : ""
+        }todo in ${chalk.yellow(proj)}.`
+      );
     }
   } else {
     console.log(`${chalk.red(proj)}: No such project.`);

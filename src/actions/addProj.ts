@@ -7,11 +7,11 @@ const STORAGE_PATH = homedir() + "/.tasklist/tasklist.json";
 
 let tasks = JSON.parse(fs.readFileSync(STORAGE_PATH, "utf-8"));
 
-export default async function addProj() {
+export default async function addProj(config: configType) {
   const newProj = await inquirer.prompt({
     name: "projName",
     type: "input",
-    prefix: "📁",
+    prefix: config?.emoji ?? true ? "📁" : undefined,
     message: "Project name",
     default() {
       return "New project";

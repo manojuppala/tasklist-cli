@@ -1,141 +1,98 @@
 #!/usr/bin/env node
 
 import * as yargs from "yargs";
+import * as fs from "fs";
+import { homedir } from "os";
 import {
   add,
   addProj,
-  addTo,
   done,
+  help,
   list,
   listAll,
   listDate,
   listProj,
   removeProj,
-  fileCheck,
 } from "./actions/index.js";
 
 // function to initialize tasklist-cli
 async function taskList() {
-  yargs
-    .usage("Usage: task [command] [project_name]")
-    .command(
-      "add",
-      "- Adds a new task to default list (or project).",
-      (yargs) => {
-        yargs.usage(`Usage: task add (or) task a`);
-      }
-    )
-    .command(
-      "addproj",
-      "- Creates a new project with the name specified.",
-      (yargs) => {
-        yargs.usage(
-          `Usage: task addproj [new_project_name] (or) task ap [new_project_name]`
-        );
-      }
-    )
-    .command("addto", "- Adds a new task to specified project.", (yargs) => {
-      yargs.usage(
-        `Usage: task addto [project_name] (or) task at [project_name]`
-      );
-    })
-    .command("done", "- Lists all the tasks that are marked done.", (yargs) => {
-      yargs.usage(`Usage: task done (or) task d`);
-    })
-    .command(
-      "list",
-      "- Lists tasks that are marked undone from specified project.",
-      (yargs) => {
-        yargs.usage(
-          `Usage: task list [project_name] (or) task ls [project_name]`
-        );
-      }
-    )
-    .command(
-      "listall",
-      "- Lists tasks that are marked undone from all projects.",
-      (yargs) => {
-        yargs.usage(`Usage: task listall (or) task la`);
-      }
-    )
-    .command(
-      "listdate",
-      "- Lists tasks marked undone along with due date.",
-      (yargs) => {
-        yargs.usage(
-          `Usage: task listdate [project_name] (or) task ld [project_name]`
-        );
-      }
-    )
-    .command("listproj", "- Lists all available projects.", (yargs) => {
-      yargs.usage(`Usage: task listproj (or) task lp`);
-    })
-    .command("remove", "- Deletes a project permanently.", (yargs) => {
-      yargs.usage(
-        `Usage: task remove [project_name] (or) task rm [project_name]`
-      );
-    })
-    .alias("h", "help")
-    .help("help")
-    .alias("v", "version").argv;
+  // check for config.json
+  const CONFIG = homedir() + "/.tasklist/config.json";
+  let config;
+  if (fs.existsSync(CONFIG)) {
+    if (fs.readFileSync(CONFIG).length === 0) {
+      fs.writeFileSync(CONFIG, JSON.stringify({}));
+    }
+    config = JSON.parse(fs.readFileSync(CONFIG, "utf-8"));
+  }
+
+  // task --help
+  help();
 
   if (
     (yargs.argv as any)._[0] === "list" ||
     (yargs.argv as any)._[0] === "ls"
   ) {
     console.clear();
-    (yargs.argv as any)._[1] ? list((yargs.argv as any)._[1]) : list();
+    (yargs.argv as any)._[1]
+      ? list(config, (yargs.argv as any)._[1])
+      : list(config);
   } else if (
     (yargs.argv as any)._[0] === "listall" ||
     (yargs.argv as any)._[0] === "la"
   ) {
     console.clear();
-    listAll();
+    listAll(config);
   } else if (
     (yargs.argv as any)._[0] === "listdate" ||
     (yargs.argv as any)._[0] === "ld"
   ) {
     console.clear();
-    (yargs.argv as any)._[1] ? listDate((yargs.argv as any)._[1]) : listDate();
+    (yargs.argv as any)._[1]
+      ? listDate(config, (yargs.argv as any)._[1])
+      : listDate(config);
   } else if (
     (yargs.argv as any)._[0] === "add" ||
     (yargs.argv as any)._[0] === "a"
   ) {
     console.clear();
-    add();
+    add(config);
   } else if (
     (yargs.argv as any)._[0] === "addto" ||
     (yargs.argv as any)._[0] === "at"
   ) {
     console.clear();
     (yargs.argv as any)._[1]
-      ? addTo((yargs.argv as any)._[1])
+      ? add(config, (yargs.argv as any)._[1])
       : yargs.showHelp();
   } else if (
     (yargs.argv as any)._[0] === "done" ||
     (yargs.argv as any)._[0] === "d"
   ) {
     console.clear();
-    (yargs.argv as any)._[1] ? done((yargs.argv as any)._[1]) : done();
+    (yargs.argv as any)._[1]
+      ? done(config, (yargs.argv as any)._[1])
+      : done(config);
   } else if (
     (yargs.argv as any)._[0] === "addproj" ||
     (yargs.argv as any)._[0] === "ap"
   ) {
     console.clear();
-    addProj();
+    addProj(config);
   } else if (
     (yargs.argv as any)._[0] === "listproj" ||
     (yargs.argv as any)._[0] === "lp"
   ) {
     console.clear();
-    listProj();
+    listProj(config);
   } else if (
     (yargs.argv as any)._[0] === "remove" ||
     (yargs.argv as any)._[0] === "rm"
   ) {
     console.clear();
     (yargs.argv as any)._[1]
-      ? removeProj((yargs.argv as any)._[1])
+      ? removeProj(config, (yargs.argv as any)._[1])
       : yargs.showHelp();
   } else {
     yargs.showHelp();
