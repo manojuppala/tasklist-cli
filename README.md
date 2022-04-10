@@ -23,7 +23,7 @@ Tasklist-cli is a simple and elegant command line application to manage tasks an
 ## Preview
 
 <p>
-  <img src="assets/tasklist.gif"/>
+  <img src="assets/tasklist-cli.gif"/>
 </p>
 
 ## Installation
