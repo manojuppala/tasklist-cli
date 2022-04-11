@@ -103,6 +103,10 @@ Read about all the possible commands in [USAGE](https://github.com/manojuppala/t
 - [nanospinner](https://www.npmjs.com/package/nanospinner)
 - [yargs](https://www.npmjs.com/package/yargs)
 
+|                                                             Author                                                             |
+| :----------------------------------------------------------------------------------------------------------------------------: |
+| [<img src="https://github.com/manojuppala.png?size=115" width=115><br><sub>@manojuppala</sub>](https://github.com/manojuppala) |
+
 ## License
 
 ```
@@ -116,7 +120,3 @@ that the license and copyright notice must be provided with the software.
 <a href='https://github.com/manojuppala/todo-list-cli/blob/main/LICENSE'>
 <img src="assets/mit-license.png" alt="tasklist-cli" width="150"/>
 </a>
-
-|                                                             Author                                                             |
-| :----------------------------------------------------------------------------------------------------------------------------: |
-| [<img src="https://github.com/manojuppala.png?size=115" width=115><br><sub>@manojuppala</sub>](https://github.com/manojuppala) |
