@@ -17,7 +17,7 @@ type taskType = {
 export default async function removeTask(
   config: configType,
   removedTaskId: number,
-  proj: string = "default"
+  proj: string
 ) {
   tasks[proj].forEach((task: taskType) => {
     if (task.id === removedTaskId) {

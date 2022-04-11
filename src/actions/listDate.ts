@@ -18,7 +18,7 @@ type taskType = {
 // function to list pending tasks with date.
 export default async function listDate(
   config: configType,
-  proj: string = "default"
+  proj: string = config?.default ?? "default"
 ) {
   const cancel = `${config?.emoji ?? true ? "❌ " : ""}cancel`;
 
